@@ -1,7 +1,8 @@
-import 'package:firestore_crud/models/edit_product.dart';
 import 'package:firestore_crud/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'edit_product.dart';
 
 class Products extends StatelessWidget {
   const Products({Key? key}) : super(key: key);
