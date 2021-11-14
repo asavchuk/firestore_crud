@@ -26,27 +26,15 @@ class ProductProvider with ChangeNotifier {
 //Setters
   changeName(String value) {
     _name = value.trim();
-    _error = '';
-
-    if (_name.isEmpty) {
-      _error = 'Name is empty';
-      validate();
-      return;
-    }
-
     validate();
   }
 
   changePrice(String value) {
     try {
       _price = double.parse(value);
-      _error = '';
     } catch (e) {
-      _error = 'Wrong price';
+      _price = 0;
     } finally {
-      if (_price <= 0) {
-        _error = 'Wrong price';
-      }
       validate();
     }
   }
@@ -78,14 +66,16 @@ class ProductProvider with ChangeNotifier {
       _error = 'Name is empty';
       notifyListeners();
       return false;
-    } else if (_price <= 0) {
+    }
+
+    if (_price <= 0) {
       _error = 'Wrong price';
       notifyListeners();
       return false;
-    } else {
-      notifyListeners();
-      return true;
     }
+
+    _error = '';
+    return true;
   }
 
   removeProduct(String productId) {
