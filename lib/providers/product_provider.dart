@@ -63,18 +63,16 @@ class ProductProvider with ChangeNotifier {
 
   bool validate() {
     if (_name.trim().isEmpty) {
-      _error = 'Name is empty';
-      notifyListeners();
+      changeError('Name is empty');
       return false;
     }
 
     if (_price <= 0) {
-      _error = 'Wrong price';
-      notifyListeners();
+      changeError('Wrong price');
       return false;
     }
 
-    _error = '';
+    changeError('');
     return true;
   }
 
